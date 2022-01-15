@@ -1,25 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import useConfetti from './useConfettie';
+import { HotKeys } from 'react-hotkeys';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const startConfetti = useConfetti();
+
+	const keyMap = {
+		CHANGWORKS: ['c', 'h', 'a', 'n', 'g', 'w', 'o', 'r', 'k', 's'].join(' '),
+	};
+
+	const handlers = {
+		CHANGWORKS: () => {
+			startConfetti();
+		},
+	};
+
+	return (
+		<HotKeys keyMap={keyMap} handlers={handlers}>
+			<div className='App'>
+				<div className='content'>
+					Type <code>changworks</code>
+				</div>
+			</div>
+		</HotKeys>
+	);
 }
 
 export default App;
